@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+public class CherryPicker : MonoBehaviour
+{
+    GameObject blocker0, blocker1;
+
+    private float cherry = 0;
+
+    public TextMeshProUGUI textCherries;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Cherry")
+        {
+            cherry++;
+            textCherries.text = cherry.ToString();
+            Destroy(collision.gameObject);
+        }
+        blocker0 = GameObject.Find("blocker0");
+        if (cherry == 10)
+        {
+            blocker0.GetComponent<Collider2D>().enabled = false;
+        }
+        blocker1 = GameObject.Find("blocker1");
+        if (cherry <= 20)
+        {
+            blocker1.GetComponent<Collider2D>().enabled = false;
+        }
+    }
+    private void Update()
+    {
+        
+
+    }
+}

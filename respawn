@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class respawn : MonoBehaviour
+{
+    public AudioClip SoundToplay;
+    public float Volume;
+
+    AudioSource audio;
+
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+    [SerializeField] Transform spawnPoint; //spawn point add
+    void OnCollisionEnter2D(Collision2D col)
+    {
+
+        if (col.transform.CompareTag("Player"))
+        col.transform.position = spawnPoint.position; //move to spawn point when it hit the box 
+        audio.PlayOneShot(SoundToplay, Volume);
+        
+    }
+
+    void Update()
+    {
+
+    }
+}
